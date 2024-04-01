@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  generator:
+    build:
+      context: .
+      dockerfile: ./generator/Dockerfile
+    volumes:
+      - ./shared:/shared
+  magic:
+    image: mageai/mageai:latest
+    command: mage start .
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      USER_CODE_PATH: /home/src/
+      ENV: ${ENV}
+    ports:
+      - 6789:6789
+    volumes:
+      - ./portable-data-stack-mage:/home/src/
+      - ./shared:/shared
+    restart: on-failure:5
+    depends_on:
+      generator:
+        condition: service_completed_successfully
+  superset:
+    build:
+      context: .
+      dockerfile: ./superset/Dockerfile
+      args:
+        SUPERSET_ADMIN: $SUPERSET_ADMIN
+        SUPERSET_PASSWORD: $SUPERSET_PASSWORD
+        SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    environment:
+      SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
+    ports:
+        - "8088:8088"
+    command:     gunicorn --bind  "0.0.0.0:8088" --access-logfile '-' --error-logfile '-' --workers 1 --worker-class gthread --threads 20 --timeout 60 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
+    volumes:
+        - ./shared/db:/app/superset_home/db
+    depends_on:
+      - magic

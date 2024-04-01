@@ -1,0 +1,21 @@
+## Refer to Using dbt with Dagster, part one for info about this file:
+## https://docs.dagster.io/integrations/dbt/using-dbt-with-dagster/part-one
+
+version: 2
+
+sources:
+  - name: parquet_input
+    meta:
+      external_location: "read_parquet('/shared/parquet/{name}.parquet')"
+    tables:
+      - name: channels
+      - name: customers
+      - name: products
+      - name: resellers
+      - name: main
+      - name: resellers_type1
+      - name: resellers_type2
+
+
+
+
