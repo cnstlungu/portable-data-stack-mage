@@ -157,6 +157,7 @@ docker-compose.override.yml
 **/.terraform*
 *.tfstate*
 *.zip
+!dashboard.zip
 
 # vscode
 .vscode/
