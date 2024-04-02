@@ -91,7 +91,8 @@ def generate_type1_reseller_data(n=50000):
                         'Customer Email': f'{first_name}.{last_name}@example.com',
                         'Series City': product['city'],
                         'Created Date': boughtdate,
-                        'Reseller ID' : resellerid
+                        'Reseller ID' : resellerid,
+                        'Transaction ID': i
                         
                         
                         }
@@ -133,11 +134,12 @@ def generate_type2_reseller_data(n = 50000 ):
                         'customer': {'firstname': first_name, 'lastname': last_name, 'email': f'{first_name}.{last_name}@example.com' },
                         'dateCreated': boughtdate,
                         'seriesCity': product['city'],
-                        'Created Date': str(bought)
+                        'Created Date': str(bought),
+                        'transactionID': i
                         }
             export.append(transaction)
 
-    generate_parquet_file('resellers_type_2', export)
+    generate_parquet_file('resellers_type2', export)
 
 def cleanup(directory, ext):
 

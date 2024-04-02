@@ -11,22 +11,21 @@ customers_main AS (
     email AS customer_email,
     0 AS reseller_id
     
-    
     FROM {{ref('raw_customers')}}
 
 )
 
-select 
+SELECT 
 
   {{ dbt_utils.generate_surrogate_key([
       "'Main'",
       'customer_id']
-  ) }} as customer_key,
+  ) }} AS customer_key,
  
  customer_first_name, 
  customer_last_name, 
  customer_email,
  s.sales_agent_key
 
-from customers_main c
+FROM customers_main c
 LEFT JOIN {{ref('dim_salesagent')}} s ON c.reseller_id = s.original_reseller_id

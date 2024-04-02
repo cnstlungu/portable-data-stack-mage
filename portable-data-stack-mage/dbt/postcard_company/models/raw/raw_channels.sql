@@ -1,2 +1,6 @@
 {{ config(schema='raw') }}
-SELECT *, CURRENT_TIMESTAMP AS loaded_timestamp FROM {{ source('parquet_input','channels') }}
+SELECT
+    channel_name,
+    channel_id,
+    CURRENT_TIMESTAMP AS loaded_timestamp 
+FROM {{ source('parquet_input','channels') }}

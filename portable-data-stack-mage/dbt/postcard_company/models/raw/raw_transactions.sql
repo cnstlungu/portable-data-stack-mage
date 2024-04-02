@@ -1,2 +1,12 @@
 {{ config(schema='raw') }}
-SELECT *, CURRENT_TIMESTAMP AS loaded_timestamp FROM {{ source('parquet_input','main') }}
+
+SELECT 
+    transaction_id, 
+    customer_id,
+    product_id,
+    amount,
+    qty,
+    channel_id,
+    bought_date, 
+    CURRENT_TIMESTAMP AS loaded_timestamp 
+FROM {{ source('parquet_input','main') }}
