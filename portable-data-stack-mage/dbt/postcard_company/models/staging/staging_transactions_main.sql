@@ -53,7 +53,7 @@ SELECT
   C.channel_key,
   0 AS reseller_id,
   strftime(bought_date::DATETIME, '%Y%m%d')::INTEGER AS bought_date_key,
-  REPLACE(amount,'$','')::numeric AS total_amount,
+  amount AS total_amount,
   qty,
   e.product_price,
   e.geography_key,
