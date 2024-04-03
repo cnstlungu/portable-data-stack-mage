@@ -7,7 +7,7 @@ services:
     volumes:
       - ./shared:/shared
   magic:
-    image: mageai/mageai:latest
+    image: mageai/mageai:0.9.68
     command: mage start .
     env_file:
       - .env
