@@ -7,20 +7,19 @@ services:
     volumes:
       - ./shared:/shared
   magic:
-    image: mageai/mageai:0.9.68
     command: mage start .
     env_file:
       - .env
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./mage/Dockerfile
     environment:
       USER_CODE_PATH: /home/src/
       ENV: ${ENV}
     ports:
       - 6789:6789
     volumes:
-      - ./portable-data-stack-mage:/home/src/
+      - ./mage:/home/src/
       - ./shared:/shared
     restart: on-failure:5
     depends_on:

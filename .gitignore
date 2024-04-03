@@ -189,3 +189,4 @@ mage-ai.db
 mage_data/
 secrets/
 dbt_packages/
+metadata.yaml
