@@ -5,7 +5,7 @@ This application is a containerized Analytics suite for an imaginary company sel
 ## Stack
 
 - Mage
-- Docker & Docker-Compose
+- Docker (docker compose)
 - DuckDB
 - dbt core
 - Superset
@@ -17,7 +17,6 @@ This application is a containerized Analytics suite for an imaginary company sel
 
 ### System requirements
 * [Docker](https://docs.docker.com/engine/install/)
-* [Docker-Compose](https://docs.docker.com/compose/install/)
 
 ## Setup
 
@@ -25,9 +24,9 @@ This application is a containerized Analytics suite for an imaginary company sel
 
 2. Rename `shared/db/datamart.duckdb.example` to `shared/db/datamart.duckdb` or init an empty database file there with that name.
 
-3. With **Docker engine** and **Docker-Compose** installed, change directory to the root folder of the project (also the one that contains docker-compose.yml) and run
+3. With **Docker engine** installed, change directory to the root folder of the project (also the one that contains docker-compose.yml) and run
 
-    `docker-compose up --build`
+    `docker compose up --build`
 
 4. Once the Docker suite has finished loading, open up [Mage](http://localhost:6789/pipelines?_limit=30) , click on the pipeline `grateful flower` and create a `Run@once` trigger.
 
@@ -68,12 +67,12 @@ For superset, the default credentials are set in the .env file: user = admin, pa
 
 ## Overview of architecture
 
-The docker-compose process will begin building the application suite. The suite is made up of the following components, each within its own docker container:
+The docker process will begin building the application suite. The suite is made up of the following components, each within its own docker container:
 * **generator**: this is a collection of Python scripts that will generate, insert and export the example data
 * **mage**: this is the orchestrator tool that will trigger the ETL tasks; its GUI is locally available on port 6789; 
 * **superset**: this contains the web-based Business Intelligence application we will use to explore the data; exposed on port 8088.
 
-Once the docker-compose building process has completed, we may open the Mage GUI (locally: localhost:6789) to view the orchestration of our tasks.
+Once the docker building process has completed, we may open the Mage GUI (locally: localhost:6789) to view the orchestration of our tasks.
 
 
 After the DAGs have completed you can either analyze the data using the querying and visualization tools provided by Superset (available locally on port 8088), or query the Data Warehouse (available as a DuckDB Database)
