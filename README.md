@@ -10,6 +10,10 @@ This application is a containerized Analytics suite for an imaginary company sel
 - dbt core
 - Superset
 
+## Interested in the data model?
+
+Generation of example data and the underlying dbt-core model is available in the [postcard-company-datamart](https://github.com/cnstlungu/postcard-company-datamart) project  
+
 ## For other orchestration options, check the below:
 - [portable-data-stack-dagster](https://github.com/cnstlungu/portable-data-stack-dagster)
 - [portable-data-stack-airflow](https://github.com/cnstlungu/portable-data-stack-airflow)
