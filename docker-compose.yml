@@ -5,6 +5,17 @@ services:
       dockerfile: ./generator/Dockerfile
     volumes:
       - ./shared:/shared
+    environment:
+      INPUT_FILES_PATH: /shared/parquet
+  dbt:
+    build:
+      context: .
+      dockerfile: ./dbt/Dockerfile
+    volumes:
+      - ./shared:/shared
+      - ./dbt/postcard_company:/datamart/postcard_company
+    environment:
+      INPUT_FILES_PATH: /shared/parquet      
   magic:
     command: mage start .
     env_file:
@@ -14,15 +25,20 @@ services:
       dockerfile: ./mage/Dockerfile
     environment:
       USER_CODE_PATH: /home/src/
+      DUCKDB_FILE_PATH: /shared/db/datamart.duckdb
+      INPUT_FILES_PATH: /shared/parquet
       ENV: ${ENV}
     ports:
       - 6789:6789
     volumes:
       - ./mage:/home/src/
       - ./shared:/shared
+      - ./dbt/postcard_company:/home/src/dbt/postcard_company
     restart: on-failure:5
     depends_on:
       generator:
+        condition: service_completed_successfully
+      dbt:
         condition: service_completed_successfully
   superset:
     build:

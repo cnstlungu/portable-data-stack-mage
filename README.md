@@ -20,7 +20,7 @@ This application is a containerized Analytics suite for an imaginary company sel
 
 ## Setup
 
-1. Rename `.env.example` file to `.env` and set your desired password. Remember to never commit files containing passwords or any other sensitive information.
+1. Rename `.env.example` file to `.env` and set your desired Superset password. Remember to never commit files containing passwords or any other sensitive information.
 
 2. Rename `shared/db/datamart.duckdb.example` to `shared/db/datamart.duckdb` or init an empty database file there with that name.
 
@@ -68,7 +68,8 @@ For superset, the default credentials are set in the .env file: user = admin, pa
 ## Overview of architecture
 
 The docker process will begin building the application suite. The suite is made up of the following components, each within its own docker container:
-* **generator**: this is a collection of Python scripts that will generate, insert and export the example data
+* **generator**: this is a collection of Python scripts that will generate, insert and export the example data, using [postcard-company-datamart]  (https://github.com/cnstlungu/postcard-company-datamart) project
+* **dbt**: the data model, sourced from [postcard-company-datamart](https://github.com/cnstlungu/postcard-company-datamart) project
 * **mage**: this is the orchestrator tool that will trigger the ETL tasks; its GUI is locally available on port 6789; 
 * **superset**: this contains the web-based Business Intelligence application we will use to explore the data; exposed on port 8088.
 

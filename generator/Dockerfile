@@ -1,14 +1,15 @@
-FROM python:3.9-slim
+FROM python:3.11
 
-RUN apt-get update && apt-get install -y wget
+RUN apt-get install git make automake gcc g++ subversion
 
-ADD --chmod=755 https://astral.sh/uv/install.sh /install.sh
-RUN /install.sh && rm /install.sh
+RUN git clone -n --depth=1 --filter=tree:0 https://github.com/cnstlungu/postcard-company-datamart.git /generator
 
-WORKDIR /home/generator
+WORKDIR /generator
 
-COPY generator .
+RUN git sparse-checkout set --no-cone generator && git checkout
 
-RUN /root/.cargo/bin/uv pip install --system -r requirements.txt
+WORKDIR /generator/generator
 
-CMD ["python", "generate.py"]
+RUN pip install -r requirements.txt
+
+CMD ["python3", "generate.py"]
