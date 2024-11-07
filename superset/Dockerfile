@@ -12,7 +12,7 @@ ADD --chmod=755 https://astral.sh/uv/install.sh /install.sh
 RUN /install.sh && rm /install.sh
 
 COPY --chown=superset:superset ./superset/assets .
-RUN /root/.cargo/bin/uv pip install --system duckdb-engine==0.13.0 duckdb==1.0.0
+RUN /root/.cargo/bin/uv pip install --system duckdb-engine==0.13.5 duckdb==1.1.3
 USER superset
 RUN superset fab create-admin \
               --username ${SUPERSET_ADMIN} \
