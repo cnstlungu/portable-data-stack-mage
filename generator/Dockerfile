@@ -10,6 +10,8 @@ RUN git sparse-checkout set --no-cone generator && git checkout
 
 WORKDIR /generator/generator
 
-RUN pip install -r requirements.txt
+RUN pip install uv
+
+RUN uv pip install --system -r requirements.txt
 
 CMD ["python3", "generate.py"]

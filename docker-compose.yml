@@ -45,8 +45,8 @@ services:
       context: .
       dockerfile: ./superset/Dockerfile
       args:
-        SUPERSET_ADMIN: $SUPERSET_ADMIN
-        SUPERSET_PASSWORD: $SUPERSET_PASSWORD
+        SUPERSET_ADMIN: ${SUPERSET_ADMIN}
+        SUPERSET_PASSWORD: ${SUPERSET_PASSWORD}
         SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}
     environment:
       SUPERSET_SECRET_KEY: ${SUPERSET_SECRET_KEY}

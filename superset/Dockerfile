@@ -8,11 +8,10 @@ ARG SUPERSET_SECRET_KEY
 # Switching to root to install the required packages
 USER root
 
-ADD --chmod=755 https://astral.sh/uv/install.sh /install.sh
-RUN /install.sh && rm /install.sh
+RUN pip install uv
 
 COPY --chown=superset:superset ./superset/assets .
-RUN /root/.cargo/bin/uv pip install --system duckdb-engine==0.13.5 duckdb==1.1.3
+RUN uv pip install --system duckdb-engine==0.13.5 duckdb==1.1.3
 USER superset
 RUN superset fab create-admin \
               --username ${SUPERSET_ADMIN} \
