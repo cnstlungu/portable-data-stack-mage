@@ -34,6 +34,8 @@ Generation of example data and the underlying dbt-core model is available in the
 
 4. Once the Docker suite has finished loading, open up [Mage](http://localhost:6789/pipelines?_limit=30) , click on the pipeline `grateful flower` and create a `Run@once` trigger.
 
+Default credentials for mage: Email `admin@admin.com` Password `admin`.
+
 ![Pipelines](resources/pipelines_overview.png "Pipelines")
 
 ![Run@once](resources/pipelines_overview.png "Trigger")
