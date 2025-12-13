@@ -14,10 +14,13 @@ This application is a containerized Analytics suite for an imaginary company sel
 
 Generation of example data and the underlying dbt-core model is available in the [postcard-company-datamart](https://github.com/cnstlungu/postcard-company-datamart) project  
 
-## For other orchestration options, check the below:
+## For other orchestration options using the same dbt-core model check the below:
 - [portable-data-stack-dagster](https://github.com/cnstlungu/portable-data-stack-dagster)
 - [portable-data-stack-airflow](https://github.com/cnstlungu/portable-data-stack-airflow)
+- [portable-data-stack-sqlmesh](https://github.com/cnstlungu/portable-data-stack-sqlmesh)
 
+Implementations with different tools, not using the dbt-core model:
+- [portable-data-stack-bruin](https://github.com/cnstlungu/portable-data-stack-bruin)
 
 ### System requirements
 * [Docker](https://docs.docker.com/engine/install/)
