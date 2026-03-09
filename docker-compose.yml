@@ -23,6 +23,7 @@ services:
     build:
       context: .
       dockerfile: ./mage/Dockerfile
+    shm_size: '1gb'
     environment:
       USER_CODE_PATH: /home/src/
       DUCKDB_FILE_PATH: /shared/db/datamart.duckdb
@@ -53,6 +54,8 @@ services:
     ports:
         - "8088:8088"
     command:     gunicorn --bind  "0.0.0.0:8088" --access-logfile '-' --error-logfile '-' --workers 1 --worker-class gthread --threads 20 --timeout 60 --limit-request-line 0 --limit-request-field_size 0 "superset.app:create_app()"
+    post_start:
+      - command: "superset import-dashboards -p ./dashboard.zip -u ${SUPERSET_ADMIN}"
     volumes:
         - ./shared/db:/app/superset_home/db
     depends_on:

@@ -41,7 +41,7 @@ Default credentials for mage: Email `admin@admin.com` Password `admin`.
 
 ![Pipelines](resources/pipelines_overview.png "Pipelines")
 
-![Run@once](resources/pipelines_overview.png "Trigger")
+![Run@once](resources/run_once_trigger.png "Trigger")
 
 ![Done Running](resources/done_running.png "Done Running")
 
