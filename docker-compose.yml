@@ -23,7 +23,6 @@ services:
     build:
       context: .
       dockerfile: ./mage/Dockerfile
-    shm_size: '1gb'
     environment:
       USER_CODE_PATH: /home/src/
       DUCKDB_FILE_PATH: /shared/db/datamart.duckdb
