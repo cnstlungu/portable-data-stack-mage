@@ -13,7 +13,6 @@ This application is a containerized Analytics suite for an imaginary company sel
 ## Interested in the data model?
 
 Generation of example data and the underlying dbt-core model is available in the [postcard-company-datamart](https://github.com/cnstlungu/postcard-company-datamart) project  
-A Dataform implementation of the same postcard company analytics model is available in the [postcard-company-dataform](https://github.com/cnstlungu/postcard-company-dataform) project.
 
 ## For other orchestration options using the same dbt-core model check the below:
 - [portable-data-stack-dagster](https://github.com/cnstlungu/portable-data-stack-dagster)
@@ -22,6 +21,7 @@ A Dataform implementation of the same postcard company analytics model is availa
 
 Implementations with different tools, not using the dbt-core model:
 - [portable-data-stack-bruin](https://github.com/cnstlungu/portable-data-stack-bruin)
+- [postcard-company-dataform](https://github.com/cnstlungu/postcard-company-dataform)
 
 ### System requirements
 * [Docker](https://docs.docker.com/engine/install/)
