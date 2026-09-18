@@ -1,0 +1,10 @@
+# mageai:0.9.79 ships dbt-core 1.8.7 / dbt-duckdb 1.8.4. The shared model nests
+# generic test arguments under `arguments:`, which dbt only understands from
+# 1.10, and 1.10 is itself deprecated as of the dbt v2 release. Mage runs dbt as
+# a subprocess (see any run_dbt block log), so upgrading the CLI in this image
+# is enough - no Mage code depends on the dbt Python package.
+# duckdb must stay in step with superset/requirements.txt: both open the same
+# warehouse file, and a newer writer produces a format the reader cannot open.
+dbt-core==1.12.5
+dbt-duckdb==1.11.0
+duckdb==1.4.4
