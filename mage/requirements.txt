@@ -1,0 +1,20 @@
+# mageai:0.9.79 ships dbt-core 1.8.7 / dbt-duckdb 1.8.4. The shared model nests
+# generic test arguments under `arguments:`, which dbt only understands from
+# 1.10, and 1.10 is itself deprecated as of the dbt v2 release.
+#
+# Mage runs dbt in-process through dbt's Python API (dbtRunner, see
+# mage_ai/data_preparation/models/block/dbt/dbt_cli.py), not as a subprocess, so
+# dbt has to be upgraded inside Mage's own site-packages rather than isolated
+# alongside it.
+#
+# typer comes with it: dbt-core 1.12 requires click >= 8.3, and the image's
+# typer 0.9.0 cannot build its CLI against that click - `mage start` dies with
+# "TypeError: Secondary flag is not valid for non-boolean flag". typer 0.16+
+# dropped the click < 8.2 cap.
+#
+# duckdb must stay in step with superset/requirements.txt: both open the same
+# warehouse file, and a newer writer produces a format the reader cannot open.
+dbt-core==1.12.5
+dbt-duckdb==1.11.0
+duckdb==1.4.4
+typer==0.19.2
