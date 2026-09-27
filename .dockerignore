@@ -1,0 +1,15 @@
+**/__pycache__
+**/.git
+**/.venv
+*.pyc
+*.log
+*.egg-info/
+*.parquet
+*.duckdb
+*.duckdb.wal
+shared/db/*.duckdb
+shared/parquet/
+logs/
+.env
+dbt/postcard_company/
+mage/mage_data/
