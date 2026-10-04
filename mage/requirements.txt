@@ -12,8 +12,10 @@
 # "TypeError: Secondary flag is not valid for non-boolean flag". typer 0.16+
 # dropped the click < 8.2 cap.
 #
-# duckdb must stay in step with superset/requirements.txt: both open the same
-# warehouse file, and a newer writer produces a format the reader cannot open.
+# duckdb must stay in step with superset/requirements.txt in
+# postcard-company-datamart at the DATAMART_REF in docker-compose.yml, which
+# the Superset image is built from: both open the same warehouse file, and a
+# newer writer produces a format the reader cannot open.
 dbt-core==1.12.5
 dbt-duckdb==1.11.0
 duckdb==1.4.4
