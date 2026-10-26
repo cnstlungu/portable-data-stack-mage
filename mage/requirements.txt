@@ -12,10 +12,12 @@
 # "TypeError: Secondary flag is not valid for non-boolean flag". typer 0.16+
 # dropped the click < 8.2 cap.
 #
-# duckdb must stay in step with superset/requirements.txt in
-# postcard-company-datamart at the DATAMART_REF in docker-compose.yml, which
-# the Superset image is built from: both open the same warehouse file, and a
-# newer writer produces a format the reader cannot open.
+# Superset reads the warehouse with the duckdb in superset/requirements.txt in
+# postcard-company-datamart, at the DATAMART_REF in docker-compose.yml. That
+# one must be at least as new as this one: no older duckdb opens a file a newer
+# one created. This can move up to Superset's pin, never past it.
+# It stays on 1.5 while Superset is on 2.0, because duckdb 2.0 needs Python
+# 3.11+ and the mageai image is Python 3.10.
 dbt-core==1.12.6
 dbt-duckdb==1.11.0
 duckdb==1.5.6
